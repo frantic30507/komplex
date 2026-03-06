@@ -40,7 +40,7 @@ a { text-decoration: none; color: inherit; }
     position: fixed; top: 0; left: 0; width: 100%; height: 92px; padding: 0 80px;
     display: flex; justify-content: space-between; align-items: center; z-index: 100;
     background: linear-gradient(to bottom, rgba(18,18,18,0.95) 0%, rgba(18,18,18,0) 100%);
-    border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.3s ease, box-shadow 0.3s ease;
+    border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
 }
 
 .header.scrolled {
@@ -51,8 +51,10 @@ body.inner-page .header { background: #121212; }
 
 .logo { display: flex; align-items: center; gap: 15px; z-index: 102; }
 .logo-mark {
-    width: 42px; height: 42px; border: 2px solid var(--accent-color); display: flex; justify-content: center; align-items: center;
-    font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--accent-color); border-radius: 8px;
+    width: 42px; height: 42px; border: 2px solid var(--accent-color);
+    display: flex; justify-content: center; align-items: center;
+    font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700;
+    color: var(--accent-color); border-radius: 8px;
 }
 .logo-text { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 16px; letter-spacing: 4px; text-transform: uppercase; }
 
@@ -60,20 +62,18 @@ body.inner-page .header { background: #121212; }
 .nav-links a { font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 400; transition: color 0.3s ease; color: rgba(244, 244, 246, 0.8); }
 .nav-links a:hover { color: var(--accent-color); }
 
-/* Правая часть шапки (Телефон + Язык) */
 .header-right { display: flex; align-items: center; gap: 30px; z-index: 102; }
 
 .phone-btn { font-weight: 500; font-size: 16px; border-bottom: 1px solid rgba(197, 160, 89, 0.3); padding-bottom: 3px; transition: all 0.3s ease; }
 .phone-btn:hover { color: var(--accent-color); border-color: var(--accent-color); }
 .mobile-phone-btn { display: none; }
 
-/* ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКА */
 .lang-switch { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; }
 .lang-switch a { color: rgba(244, 244, 246, 0.5); transition: color 0.3s ease; }
 .lang-switch a:hover, .lang-switch a.active { color: var(--accent-color); }
 .lang-switch span { color: rgba(244, 244, 246, 0.2); user-select: none; }
 
-.hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; }
+.hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 102; }
 .hamburger span { width: 30px; height: 2px; background-color: var(--text-main); transition: all 0.3s ease; display: block; }
 
 /* ==========================================================================
@@ -87,7 +87,7 @@ body.inner-page .header { background: #121212; }
 .hero-title { font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 600; line-height: 1.1; margin-bottom: 35px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
 .hero-title span { display: block; opacity: 0; transform: translateY(40px); }
 .hero-subtitle { font-size: 19px; font-weight: 300; line-height: 1.6; margin-bottom: 60px; max-width: 500px; color: rgba(244, 244, 246, 0.7); opacity: 0; transform: translateY(20px); }
-.hero-actions { display: flex; gap: 25px; opacity: 0; transform: translateY(20px); }
+.hero-actions { display: flex; gap: 20px; opacity: 0; transform: translateY(20px); }
 
 .hero-swiper { flex: 0 0 45%; height: auto; border-radius: var(--card-radius); overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3); opacity: 0; transform: translateX(30px); position: relative; background-color: transparent; }
 .swiper-wrapper { align-items: flex-start; }
@@ -98,17 +98,34 @@ body.inner-page .header { background: #121212; }
 .hero-swiper .swiper-pagination-bullet-active { opacity: 1; background-color: var(--accent-color); transform: scale(1.2); }
 
 /* ==========================================================================
-   ОБЩИЕ СЕКЦИИ И КНОПКИ
+   ОБЩИЕ СЕКЦИИ И КНОПКИ (ИСПРАВЛЕНО ВЫРАВНИВАНИЕ)
    ========================================================================== */
 .section { padding: 120px 80px; position: relative; }
 .section-header { margin-bottom: 60px; max-width: 600px; }
 .section-subtitle { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-color); margin-bottom: 15px; display: block; }
 .section-title { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 600; line-height: 1.2; }
 
-.btn { display: inline-block; padding: 20px 45px; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; cursor: pointer; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); text-align: center; border-radius: var(--btn-radius); border: none; outline: none; }
-.btn-primary { background-color: var(--accent-color); color: #111; border: 1px solid var(--accent-color); }
+/* ИДЕАЛЬНАЯ КНОПКА (Всегда центрирует текст) */
+.btn { 
+    display: inline-flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 18px 40px; 
+    font-size: 13px; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-weight: 500; 
+    cursor: pointer; 
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    text-align: center; 
+    border-radius: var(--btn-radius); 
+    border: 1px solid transparent; /* Базовая прозрачная рамка, чтобы не прыгали размеры */
+    outline: none; 
+    line-height: 1; 
+}
+.btn-primary { background-color: var(--accent-color); color: #111; border-color: var(--accent-color); }
 .btn-primary:hover { background-color: transparent; color: var(--accent-color); box-shadow: 0 5px 20px rgba(197, 160, 89, 0.2); }
-.btn-secondary { background-color: transparent; color: var(--text-main); border: 1px solid rgba(244, 244, 246, 0.2); }
+.btn-secondary { background-color: transparent; color: var(--text-main); border-color: rgba(244, 244, 246, 0.2); }
 .btn-secondary:hover { border-color: var(--accent-color); color: var(--accent-color); background-color: rgba(197, 160, 89, 0.05); }
 
 /* ==========================================================================
@@ -236,23 +253,31 @@ body.inner-page .header { background: #121212; }
 /* ==========================================================================
    АДАПТИВНОСТЬ (MEDIA QUERIES)
    ========================================================================== */
+
+/* Большие планшеты и маленькие ноутбуки (1200px) */
 @media (max-width: 1200px) {
-    .hero-title { font-size: 60px; }
-    .hero-content { gap: 40px; }
-    .section { padding: 100px 50px; }
-    .adv-grid, .catalog-grid { gap: 30px; }
+    .hero-title { font-size: 56px; } 
+    .hero-content { gap: 30px; }
+    .section { padding: 100px 40px; }
+    
+    .nav-links { gap: 20px; } 
+    .btn { padding: 16px 30px; } /* Чуть уменьшаем кнопки */
+    
+    .adv-grid { gap: 20px; }
+    .catalog-grid { gap: 20px; }
     .contact-container { grid-template-columns: 1fr 1fr; gap: 40px; }
-    .contact-info { padding-right: 0; }
-    .contact-form-wrapper { padding: 40px; }
+    
     .products-grid { grid-template-columns: repeat(2, 1fr); } 
     .products-section { padding: 60px 40px; }
 }
 
-@media (max-width: 992px) {
-    .hero-title { font-size: 52px; }
+/* Планшеты (1024px) */
+@media (max-width: 1024px) {
     .header { padding: 0 30px; }
     .section-title { font-size: 40px; }
+    
     .adv-grid { grid-template-columns: 1fr; }
+    .catalog-grid { grid-template-columns: 1fr; } 
     .contact-container { grid-template-columns: 1fr; }
     
     .header-right { gap: 15px; }
@@ -277,21 +302,25 @@ body.inner-page .header { background: #121212; }
     .products-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 }
 
+/* Мобильные телефоны (768px) */
 @media (max-width: 768px) {
-    .section, .footer { padding: 80px 25px; }
-    .hero { padding: 120px 25px 60px; min-height: auto; }
+    .section, .footer { padding: 60px 20px; }
+    .header { padding: 0 20px; }
+    
+    .hero { padding: 120px 20px 60px; min-height: auto; }
     .hero-content { flex-direction: column; gap: 40px; text-align: center; }
     .hero-text-block { max-width: 100%; }
-    .hero-title { font-size: 40px; margin-bottom: 25px; }
-    .hero-subtitle { max-width: 100%; margin-bottom: 40px; }
+    .hero-title { font-size: 36px; margin-bottom: 20px; }
+    .hero-subtitle { max-width: 100%; margin-bottom: 30px; font-size: 16px;}
+    
+    /* Кнопки на телефоне: аккуратные, не на весь экран */
     .hero-actions { flex-direction: column; gap: 15px; align-items: center; }
-    .btn { width: 100%; max-width: 300px; }
+    .btn { width: 100%; max-width: 320px; padding: 16px 20px; } 
     
     .hero-swiper { flex: none; width: 100%; transform: none !important; opacity: 1 !important; }
     
-    .section-title { font-size: 32px; }
+    .section-title { font-size: 28px; }
     .adv-card { padding: 30px; }
-    .catalog-grid { grid-template-columns: 1fr; } 
     
     .cat-card { height: auto; min-height: 320px; padding: 30px; align-items: flex-end; }
     .cat-bg { left: 20px; right: 20px; top: 20px; bottom: 20px; aspect-ratio: auto; background-size: cover; opacity: 0.3; border-radius: 12px; } 
@@ -304,6 +333,8 @@ body.inner-page .header { background: #121212; }
     .products-section { padding: 40px 20px; } 
     .products-grid { grid-template-columns: 1fr; gap: 30px; } 
     .modal-content { padding: 30px 20px; width: 90%; } 
-    .footer { padding: 30px 20px; } 
+    
+    .form-input, .form-textarea { padding: 14px 15px; }
+    
     .lightbox-close { top: -50px; right: 0; }
 }
