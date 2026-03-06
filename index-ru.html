@@ -20,10 +20,11 @@
             <div class="logo-text">КОМПЛЕКС</div>
         </a>
         <nav class="nav-links">
-            <a href="index-ru.html#about">О компании</a>
-            <a href="index-ru.html#catalog">Каталог</a>
-            <a href="index-ru.html#process">Этапы</a>
-            <a href="index-ru.html#contacts">Контакты</a>
+            <a href="#about">О компании</a>
+            <a href="#catalog">Каталог</a>
+            <a href="#portfolio">Наши работы</a>
+            <a href="#process">Этапы</a>
+            <a href="#contacts">Контакты</a>
             <a href="tel:+380000000000" class="mobile-phone-btn">+38 (000) 000-00-00</a>
         </nav>
         
@@ -54,13 +55,9 @@
                     <a href="#contacts" class="btn btn-secondary">Консультация</a>
                 </div>
             </div>
-            <div class="hero-swiper swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="img/swiper_single.webp" alt="Одинарный"></div>
-                    <div class="swiper-slide"><img src="img/swiper_double.webp" alt="Двойной"></div>
-                    <div class="swiper-slide"><img src="img/swiper_exclusive.webp" alt="Эксклюзив"></div>
-                </div>
-                <div class="swiper-pagination"></div>
+            
+            <div class="hero-image-wrapper">
+                <img src="img/hero_mainru.webp" alt="Гранитные памятники">
             </div>
         </div>
     </section>
@@ -136,6 +133,28 @@
                     <div class="cat-link">Смотреть варианты <span>&rarr;</span></div>
                 </div>
             </a>
+        </div>
+    </section>
+
+    <section id="portfolio" class="section">
+        <div class="portfolio-header-row">
+            <div class="section-header">
+                <span class="section-subtitle">Наши работы</span>
+                <h2 class="section-title">Реализованные проекты</h2>
+            </div>
+            <div class="portfolio-btn-wrapper">
+                <a href="portfolio-ru.html" class="btn btn-secondary">Смотреть все работы</a>
+            </div>
+            <div></div> </div>
+        
+        <div class="portfolio-swiper swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="img/swiper_single.webp" alt="Работа 1"></div>
+                <div class="swiper-slide"><img src="img/swiper_double.webp" alt="Работа 2"></div>
+                <div class="swiper-slide"><img src="img/swiper_exclusive.webp" alt="Работа 3"></div>
+                <div class="swiper-slide"><img src="img/single2.webp" alt="Работа 4"></div>
+            </div>
+            <div class="swiper-pagination"></div>
         </div>
     </section>
 
@@ -218,6 +237,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
