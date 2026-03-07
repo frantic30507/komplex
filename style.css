@@ -256,11 +256,10 @@ body.inner-page .header { background: #121212; }
 .form-submit { width: 100%; margin-top: 10px; }
 
 /* ==========================================================================
-   ВНУТРЕННИЕ СТРАНИЦЫ КАТАЛОГА (СЕТКА ТОВАРОВ И ЗАГОЛОВОК)
+   ВНУТРЕННИЕ СТРАНИЦЫ КАТАЛОГА (СЕТКА ТОВАРОВ)
    ========================================================================== */
-/* ИСПРАВЛЕНИЕ: Убрали position: sticky, теперь этот блок нормально скроллится! */
 .inner-hero { 
-    position: relative; /* БЫЛО sticky! */
+    position: relative; 
     padding: 40px clamp(20px, 5vw, 80px); 
     background-color: #161616; 
     text-align: center; 
@@ -272,10 +271,9 @@ body.inner-page .header { background: #121212; }
 .breadcrumbs a:hover { color: var(--accent-color); }
 .breadcrumbs span { color: var(--accent-color); }
 
-/* Заголовок страницы (Одинарные памятники и т.д.) */
 .page-title { 
     font-family: 'Playfair Display', serif; 
-    font-size: clamp(26px, 3vw, 36px); /* Плавное уменьшение */
+    font-size: clamp(26px, 3vw, 36px); 
     font-weight: 600; 
     margin-bottom: 10px; 
 }
@@ -294,7 +292,6 @@ body.inner-page .header { background: #121212; }
 .product-card:hover .zoom-overlay { opacity: 1; }
 .product-card:hover .zoom-overlay svg { transform: scale(1); }
 
-/* КОМПАКТНЫЙ БЛОК ТОВАРОВ ВНУТРИ КАРТОЧЕК */
 .product-info { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
 
 .product-title { 
@@ -419,25 +416,58 @@ body.inner-page .header { background: #121212; }
     .catalog-grid { grid-template-columns: 1fr; } 
 }
 
-/* МОБИЛЬНАЯ ВЕРСИЯ (ДО 768px) */
+/* ==========================================================================
+   МОБИЛЬНАЯ ВЕРСИЯ (ДО 768px)
+   ========================================================================== */
 @media (max-width: 768px) {
     .header { height: 70px; padding: 0 20px; }
     body.inner-page { padding-top: 70px; }
     
-    /* ЗМЕНШЕНИЙ ВЕРХНІЙ БЛОК НА ВНУТРІШНІХ СТОРІНКАХ */
-    .inner-hero { padding: 20px 15px; border-bottom: none; }
-    .page-title { font-size: 22px; margin-bottom: 8px; }
-    .page-desc { font-size: 12px; line-height: 1.4; }
-
     .logo-mark { width: 32px; height: 32px; font-size: 18px; }
     .logo-text { font-size: 14px; }
     
+    /* СУПЕР-ФИШКА: ПРИЛИПАЮЩИЕ ХЛЕБНЫЕ КРОШКИ С КОЛЛАПСОМ ТЕКСТА */
+    .inner-hero { 
+        position: sticky; 
+        top: 70px; /* Прилипает сразу под шапкой */
+        z-index: 90; 
+        padding: 20px 15px; 
+        border-bottom: none;
+        transition: padding 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    /* Изначально текст есть и он плавно исчезает */
+    .inner-hero .page-title,
+    .inner-hero .page-desc {
+        max-height: 200px;
+        opacity: 1;
+        overflow: hidden;
+        transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.4s ease;
+    }
+
+    .page-title { font-size: 22px; margin-bottom: 8px; }
+    .page-desc { font-size: 12px; line-height: 1.4; }
+
+    /* КЛАСС COMPACT ДОБАВЛЯЕТСЯ ЧЕРЕЗ JS ПРИ СКРОЛЛЕ */
+    .inner-hero.compact {
+        padding: 12px 15px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+        border-bottom: 1px solid rgba(197, 160, 89, 0.3); /* Тонкая золотая линия */
+    }
+    .inner-hero.compact .page-title,
+    .inner-hero.compact .page-desc {
+        max-height: 0;
+        opacity: 0;
+        margin-bottom: 0;
+    }
+    .inner-hero.compact .breadcrumbs {
+        margin-bottom: 0;
+    }
+
     .hero { padding: 100px 20px 20px; } 
     .hero-title { font-size: clamp(32px, 8vw, 40px); line-height: 1.2; margin-bottom: 15px; }
-    
     .hero-actions { flex-direction: column; align-items: stretch; gap: 15px; width: 100%; }
     .btn { width: 100%; max-width: 100%; padding: 16px 20px; white-space: normal; height: auto; text-align: center; } 
-    
     .hero-image-wrapper { display: block; border-radius: 8px; margin-top: 20px; }
     
     .section, .footer { padding: 40px 20px; }
@@ -457,7 +487,6 @@ body.inner-page .header { background: #121212; }
     .product-img-wrapper { aspect-ratio: 4 / 3; }
     .product-info { padding: 10px 15px; }
     
-    /* ТУТ ТЕЖ ЗМЕНШЕНО ШРИФТ ДЛЯ ТОВАРІВ НА ТЕЛЕФОНІ */
     .product-title { font-size: 15px; margin-bottom: 5px; }
     .product-details { margin-bottom: 10px; }
     .product-details li { font-size: 11px; margin-bottom: 3px; padding-bottom: 3px; }
@@ -465,9 +494,7 @@ body.inner-page .header { background: #121212; }
     
     .timeline { padding: 10px 0; }
     .timeline-item { padding-left: 50px; margin-bottom: 30px; } 
-    
     .contact-form-wrapper { padding: 30px 20px; }
-    
     .portfolio-swiper { padding-bottom: 40px !important; }
     .modal-content { padding: 30px 20px; width: 95%; } 
 }

@@ -14,14 +14,26 @@ function raf(time) {
 requestAnimationFrame(raf);
 
 /* ==========================================================================
-   2. АНИМАЦИЯ ШАПКИ ПРИ СКРОЛЛЕ
+   2. АНИМАЦИЯ ШАПКИ И СЖАТИЕ ЗАГОЛОВКА В КАТАЛОГЕ ПРИ СКРОЛЛЕ
    ========================================================================== */
 const header = document.querySelector('.header');
+const innerHero = document.querySelector('.inner-hero');
+
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-        header.classList.add('scrolled');
+        if (header) {
+            header.classList.add('scrolled');
+        }
+        if (innerHero) {
+            innerHero.classList.add('compact'); // Сжимаем заголовок
+        }
     } else {
-        header.classList.remove('scrolled');
+        if (header) {
+            header.classList.remove('scrolled');
+        }
+        if (innerHero) {
+            innerHero.classList.remove('compact'); // Возвращаем заголовок
+        }
     }
 });
 
@@ -87,15 +99,17 @@ const hiddenInput = document.getElementById('hiddenProductInput');
 document.querySelectorAll('.open-modal-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
+        
         if (modal) {
             const productName = btn.getAttribute('data-product');
-            // Обновляем текст в модалке
+            
             if (modalTitle && productName) {
                 modalTitle.textContent = productName;
             }
             if (hiddenInput && productName) {
                 hiddenInput.value = productName;
             }
+            
             modal.classList.add('active');
         }
     });
@@ -116,7 +130,7 @@ window.addEventListener('click', (e) => {
 });
 
 /* ==========================================================================
-   6. УВЕЛИЧЕНИЕ ФОТО (ЛАЙТБОКС) - ИСПРАВЛЕНО
+   6. УВЕЛИЧЕНИЕ ФОТО (ЛАЙТБОКС)
    ========================================================================== */
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImage');
@@ -125,6 +139,7 @@ const lightboxImg = document.getElementById('lightboxImage');
 document.querySelectorAll('.product-img-wrapper').forEach(wrapper => {
     wrapper.addEventListener('click', () => {
         const img = wrapper.querySelector('img');
+        
         if (img && lightbox && lightboxImg) {
             lightboxImg.src = img.src;
             lightbox.classList.add('active');
@@ -132,7 +147,7 @@ document.querySelectorAll('.product-img-wrapper').forEach(wrapper => {
     });
 });
 
-// ЗАКРЫТИЕ ФОТО ПРИ КЛИКЕ В ЛЮБОЕ МЕСТО (включая саму картинку)
+// ЗАКРЫТИЕ ФОТО ПРИ КЛИКЕ В ЛЮБОЕ МЕСТО
 if (lightbox) {
     lightbox.addEventListener('click', () => {
         lightbox.classList.remove('active');
@@ -147,21 +162,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     phoneInputs.forEach(input => {
         input.addEventListener('input', function (e) {
-            // Очищаем от всего, кроме цифр
             let numbers = e.target.value.replace(/\D/g, '');
             
-            // Если пользователь стер всё, оставляем пустоту
             if (!numbers) {
                 e.target.value = '';
                 return;
             }
 
-            // Жестко задаем начало на 38
             if (!numbers.startsWith('38')) {
                 numbers = '38' + numbers;
             }
 
-            // Форматируем строку: +38 (0XX) XXX-XX-XX
             let formatted = '+38 ';
             if (numbers.length > 2) {
                 formatted += '(' + numbers.substring(2, 5);
@@ -179,14 +190,12 @@ document.addEventListener("DOMContentLoaded", () => {
             e.target.value = formatted;
         });
 
-        // При клике на поле ставим +38, если оно пустое
         input.addEventListener('focus', function(e) {
             if (e.target.value === '') {
                 e.target.value = '+38 ';
             }
         });
 
-        // Если убрал мышку и оставил только +38, очищаем поле
         input.addEventListener('blur', function(e) {
             if (e.target.value === '+38 ' || e.target.value === '+38') {
                 e.target.value = '';
@@ -202,10 +211,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Анимация главного экрана
 if (document.querySelector('.hero-title span')) {
-    gsap.to('.hero-title span', { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out" });
-    gsap.to('.hero-subtitle', { y: 0, opacity: 1, duration: 1, delay: 0.6, ease: "power3.out" });
-    gsap.to('.hero-actions', { y: 0, opacity: 1, duration: 1, delay: 0.8, ease: "power3.out" });
-    gsap.to('.hero-image-wrapper', { x: 0, opacity: 1, duration: 1.2, delay: 0.4, ease: "power3.out" });
+    gsap.to('.hero-title span', { 
+        y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out" 
+    });
+    gsap.to('.hero-subtitle', { 
+        y: 0, opacity: 1, duration: 1, delay: 0.6, ease: "power3.out" 
+    });
+    gsap.to('.hero-actions', { 
+        y: 0, opacity: 1, duration: 1, delay: 0.8, ease: "power3.out" 
+    });
+    gsap.to('.hero-image-wrapper', { 
+        x: 0, opacity: 1, duration: 1.2, delay: 0.4, ease: "power3.out" 
+    });
 }
 
 // Анимация появления секций
