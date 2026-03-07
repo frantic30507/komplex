@@ -30,21 +30,20 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* ИСПРАВЛЕНИЕ: Меньший отступ под новый хедер */
 body.inner-page { padding-top: 75px; }
 a { text-decoration: none; color: inherit; }
 
 /* ==========================================================================
-   ШАПКА (HEADER) - УМЕНЬШЕН РАЗМЕР
+   ШАПКА (HEADER)
    ========================================================================== */
 .header {
     position: fixed; top: 0; left: 0; width: 100%; 
-    height: 75px; /* Было 92px */
-    padding: 0 clamp(20px, 5vw, 60px); /* Уменьшены отступы по краям */
+    height: 75px; 
+    padding: 0 clamp(20px, 5vw, 60px); 
     display: flex; justify-content: space-between; align-items: center; z-index: 100;
     background: linear-gradient(to bottom, rgba(18,18,18,0.95) 0%, rgba(18,18,18,0) 100%);
     border-bottom: 1px solid rgba(255,255,255,0.05); 
-    transition: background 0.3s ease, box-shadow 0.3s ease, height 0.3s ease;
+    transition: background 0.3s ease, box-shadow 0.3s ease, height 0.3s ease, padding 0.3s ease;
 }
 
 .header.scrolled {
@@ -53,9 +52,9 @@ a { text-decoration: none; color: inherit; }
 
 body.inner-page .header { background: #121212; }
 
-.logo { display: flex; align-items: center; gap: clamp(10px, 1.5vw, 15px); z-index: 102; }
+.logo { display: flex; align-items: center; gap: clamp(8px, 1.5vw, 15px); z-index: 102; }
 .logo-mark {
-    width: clamp(30px, 3vw, 38px); height: clamp(30px, 3vw, 38px); /* Чуть меньше лого */
+    width: clamp(30px, 3vw, 38px); height: clamp(30px, 3vw, 38px); 
     border: 2px solid var(--accent-color);
     display: flex; justify-content: center; align-items: center;
     font-family: 'Playfair Display', serif; font-size: clamp(16px, 1.5vw, 22px); font-weight: 700;
@@ -194,12 +193,11 @@ body.inner-page .header { background: #121212; }
 /* ==========================================================================
    ВНУТРЕННИЕ СТРАНИЦЫ КАТАЛОГА (СЕТКА И УМНЫЙ ЗАГОЛОВОК)
    ========================================================================== */
-/* Теперь этот блок ПРИЛИПАЕТ К ВЕРХУ и на ПК, и на телефонах! */
 .inner-hero { 
     position: sticky; 
-    top: 75px; /* Высота десктопного хедера */
+    top: 75px; 
     z-index: 90; 
-    padding: 30px clamp(20px, 5vw, 80px); /* Фиксированные отступы */
+    padding: 30px clamp(20px, 5vw, 80px); 
     background-color: #161616; 
     text-align: center; 
     border-bottom: 1px solid transparent; 
@@ -223,33 +221,27 @@ body.inner-page .header { background: #121212; }
     overflow: hidden;
     transform: translateY(0);
     margin-bottom: 10px;
-    /* Плавное растворение и сжатие */
     transition: max-height 0.7s cubic-bezier(0.23, 1, 0.32, 1), 
                 opacity 0.4s ease, 
                 margin-bottom 0.7s cubic-bezier(0.23, 1, 0.32, 1),
                 transform 0.5s ease;
 }
-.inner-hero .page-desc { 
-    font-size: 14px; color: var(--text-muted); max-width: 650px; margin: 0 auto; line-height: 1.5; margin-bottom: 0; 
-}
+.inner-hero .page-desc { font-size: 14px; color: var(--text-muted); max-width: 650px; margin: 0 auto; line-height: 1.5; margin-bottom: 0; }
 .page-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3vw, 36px); font-weight: 600; }
 
-/* === СОСТОЯНИЕ КОЛЛАПСА (ДЛЯ ПК И ТЕЛЕФОНОВ) === */
 .inner-hero.compact {
     padding-top: 15px;
     padding-bottom: 15px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.6);
-    border-bottom: 1px solid rgba(197, 160, 89, 0.3); /* Золотая линия */
+    border-bottom: 1px solid rgba(197, 160, 89, 0.3); 
 }
-.inner-hero.compact .breadcrumbs {
-    margin-bottom: 0; /* Подтянули линию вплотную к крошкам */
-}
+.inner-hero.compact .breadcrumbs { margin-bottom: 0; }
 .inner-hero.compact .page-title,
 .inner-hero.compact .page-desc {
     max-height: 0;
     opacity: 0;
     margin-bottom: 0 !important;
-    transform: translateY(-10px); /* Мягко уезжает вверх */
+    transform: translateY(-10px); 
 }
 
 .products-section { padding: 40px clamp(20px, 5vw, 80px) 100px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
@@ -342,19 +334,25 @@ body.inner-page .header { background: #121212; }
     .catalog-grid { grid-template-columns: 1fr; } 
 }
 
-/* МОБИЛЬНАЯ ВЕРСИЯ */
+/* ==========================================================================
+   МОБИЛЬНАЯ ВЕРСИЯ (ДО 768px) - СУПЕР ТОНКИЙ ХЕДЕР
+   ========================================================================== */
 @media (max-width: 768px) {
-    /* 1. ХЕДЕР НА ТЕЛЕФОНЕ ЕЩЕ МЕНЬШЕ */
-    .header { height: 65px; padding: 0 20px; }
-    body.inner-page { padding-top: 65px; }
-    .logo-mark { width: 28px; height: 28px; font-size: 16px; }
-    .logo-text { font-size: 13px; }
+    /* 1. ХЕДЕР НА ТЕЛЕФОНЕ ЕЩЕ МЕНЬШЕ И АККУРАТНЕЕ */
+    .header { height: 55px; padding: 0 15px; } /* Сузили хедер до 55px и уменьшили бока */
+    body.inner-page { padding-top: 55px; } /* Сдвинули контент под новый хедер */
+    
+    /* Уменьшили логотип, чтобы он влез в 55px */
+    .logo-mark { width: 26px; height: 26px; font-size: 14px; border-width: 1px; }
+    .logo-text { font-size: 12px; letter-spacing: 2px; }
+    .hamburger span { height: 2px; margin-bottom: 4px; } /* Гамбургер чуть плотнее */
     
     /* 2. ПЛАВНЫЙ И КРАСИВЫЙ БЛОК НАВИГАЦИИ (МОБИЛЬНЫЙ) */
     .inner-hero { 
-        top: 65px; /* Прилипает прямо под мобильным хедером */
-        padding: 20px 15px; 
+        top: 55px; /* Прилипает прямо под новым супер-тонким мобильным хедером */
+        padding: 15px 15px; 
     }
+    
     .inner-hero .breadcrumbs { margin-bottom: 10px; }
     .page-title { font-size: 22px; }
     .page-desc { font-size: 12px; }
