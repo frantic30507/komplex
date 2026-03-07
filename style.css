@@ -335,21 +335,27 @@ body.inner-page .header { background: #121212; }
 }
 
 /* ==========================================================================
-   МОБИЛЬНАЯ ВЕРСИЯ (ДО 768px) - СУПЕР ТОНКИЙ ХЕДЕР
+   МОБИЛЬНАЯ ВЕРСИЯ (ДО 768px)
    ========================================================================== */
 @media (max-width: 768px) {
-    /* 1. ХЕДЕР НА ТЕЛЕФОНЕ ЕЩЕ МЕНЬШЕ И АККУРАТНЕЕ */
-    .header { height: 55px; padding: 0 15px; } /* Сузили хедер до 55px и уменьшили бока */
-    body.inner-page { padding-top: 55px; } /* Сдвинули контент под новый хедер */
+    /* 1. ХЕДЕР НА ТЕЛЕФОНЕ */
+    .header { height: 55px; padding: 0 15px; } 
+    body.inner-page { padding-top: 55px; } 
     
-    /* Уменьшили логотип, чтобы он влез в 55px */
     .logo-mark { width: 26px; height: 26px; font-size: 14px; border-width: 1px; }
     .logo-text { font-size: 12px; letter-spacing: 2px; }
-    .hamburger span { height: 2px; margin-bottom: 4px; } /* Гамбургер чуть плотнее */
     
-    /* 2. ПЛАВНЫЙ И КРАСИВЫЙ БЛОК НАВИГАЦИИ (МОБИЛЬНЫЙ) */
+    /* 2. УМЕНЬШЕННЫЙ И АККУРАТНЫЙ ГАМБУРГЕР */
+    .hamburger { gap: 5px; } /* Было 6px */
+    .hamburger span { width: 24px; margin-bottom: 0; height: 2px; } /* Ширина 24px вместо 30px */
+    
+    /* Новые координаты крестика под уменьшенный размер */
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    
+    /* 3. БЛОК НАВИГАЦИИ (МОБИЛЬНЫЙ) */
     .inner-hero { 
-        top: 55px; /* Прилипает прямо под новым супер-тонким мобильным хедером */
+        top: 55px; 
         padding: 15px 15px; 
     }
     
