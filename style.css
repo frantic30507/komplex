@@ -316,7 +316,7 @@ body.inner-page .header { background: #121212; }
 .footer { background-color: #0a0a0a; padding: 30px clamp(20px, 5vw, 80px); text-align: center; font-size: 13px; color: rgba(244, 244, 246, 0.4); border-top: 1px solid rgba(255, 255, 255, 0.05); }
 
 /* ==========================================================================
-   АДАПТИВНОСТЬ
+   АДАПТИВНОСТЬ (СЖАТИЕ ДЛЯ МОБИЛЬНЫХ)
    ========================================================================== */
 
 @media (max-width: 1400px) {
@@ -379,7 +379,6 @@ body.inner-page .header { background: #121212; }
 }
 
 @media (max-width: 768px) {
-    /* ИДЕАЛЬНЫЕ УМЕНЬШЕННЫЕ ОТСТУПЫ ДЛЯ МОБИЛЬНЫХ */
     .hero { padding: 100px 20px 20px; } 
     .hero-title { font-size: clamp(32px, 8vw, 40px); line-height: 1.2; margin-bottom: 15px; }
     
@@ -388,22 +387,35 @@ body.inner-page .header { background: #121212; }
     
     .hero-image-wrapper { display: block; border-radius: 8px; margin-top: 20px; }
     
-    /* ГЛОБАЛЬНОЕ СОКРАЩЕНИЕ ЧЕРНЫХ ДЫР МЕЖДУ СЕКЦИЯМИ */
     .section, .footer { padding: 40px 20px; }
     .section-header { margin-bottom: 30px; }
     
-    .cat-card { height: auto; min-height: 320px; padding: 20px; align-items: flex-end; }
-    .cat-bg { left: 15px; right: 15px; top: 15px; bottom: 15px; aspect-ratio: auto; border-radius: 12px; } 
+    /* ========================================================
+       СУПЕР-КОМПАКТНЫЕ КАРТОЧКИ КАТАЛОГА НА ГЛАВНОЙ (ДЛЯ ТЕЛЕФОНОВ)
+       ======================================================== */
+    .cat-card { height: auto; min-height: 260px; padding: 20px; align-items: flex-end; }
+    .cat-bg { left: 10px; right: 10px; top: 10px; bottom: 10px; aspect-ratio: auto; border-radius: 12px; } 
     .cat-content { max-width: 100%; }
+    .cat-title { font-size: 22px; margin-bottom: 8px; }
+    .cat-desc { font-size: 13px; line-height: 1.4; margin-bottom: 15px; }
+
+    /* ========================================================
+       СУПЕР-КОМПАКТНЫЕ КАРТОЧКИ ТОВАРОВ ВНУТРИ (ДЛЯ ТЕЛЕФОНОВ)
+       ======================================================== */
+    .products-section { padding: 40px 20px 60px; } 
+    .products-grid { grid-template-columns: 1fr; gap: 20px; } /* Срезал дыру между товарами */
     
-    /* Подтянули пункты процесса друг к другу */
+    .product-info { padding: 15px; }
+    .product-title { font-size: 18px; margin-bottom: 8px; }
+    .product-details { margin-bottom: 15px; }
+    .product-details li { font-size: 12px; margin-bottom: 5px; padding-bottom: 5px; }
+    .product-card .btn { padding: 12px 15px; font-size: 12px; }
+    
     .timeline { padding: 10px 0; }
     .timeline-item { padding-left: 50px; margin-bottom: 30px; } 
     
     .contact-form-wrapper { padding: 30px 20px; }
     
     .portfolio-swiper { padding-bottom: 40px !important; }
-    .products-section { padding: 40px 20px 60px; } 
-    .products-grid { grid-template-columns: 1fr; gap: 30px; } 
     .modal-content { padding: 30px 20px; width: 95%; } 
 }
