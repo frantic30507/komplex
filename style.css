@@ -338,22 +338,17 @@ body.inner-page .header { background: #121212; }
    МОБИЛЬНАЯ ВЕРСИЯ (ДО 768px)
    ========================================================================== */
 @media (max-width: 768px) {
-    /* 1. ХЕДЕР НА ТЕЛЕФОНЕ */
     .header { height: 55px; padding: 0 15px; } 
     body.inner-page { padding-top: 55px; } 
     
     .logo-mark { width: 26px; height: 26px; font-size: 14px; border-width: 1px; }
     .logo-text { font-size: 12px; letter-spacing: 2px; }
     
-    /* 2. УМЕНЬШЕННЫЙ И АККУРАТНЫЙ ГАМБУРГЕР */
-    .hamburger { gap: 5px; } /* Было 6px */
-    .hamburger span { width: 24px; margin-bottom: 0; height: 2px; } /* Ширина 24px вместо 30px */
-    
-    /* Новые координаты крестика под уменьшенный размер */
+    .hamburger { gap: 5px; } 
+    .hamburger span { width: 24px; margin-bottom: 0; height: 2px; } 
     .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     
-    /* 3. БЛОК НАВИГАЦИИ (МОБИЛЬНЫЙ) */
     .inner-hero { 
         top: 55px; 
         padding: 15px 15px; 
@@ -377,13 +372,16 @@ body.inner-page .header { background: #121212; }
     .section, .footer { padding: 40px 20px; }
     .section-header { margin-bottom: 30px; }
     
-    .cat-card { height: auto; min-height: 140px; padding: 10px; align-items: flex-end; }
-    .cat-bg { left: 8px; right: 8px; top: 8px; bottom: 8px; aspect-ratio: auto; border-radius: 12px; } 
+    /* ИСПРАВЛЕНИЕ: КАРТОЧКИ КАТАЛОГА НА ГЛАВНОЙ СНОВА ПОЛНОЦЕННЫЕ И БОЛЬШИЕ */
+    .cat-card { height: auto; min-height: 280px; padding: 25px 20px; align-items: flex-end; }
+    .cat-bg { left: 10px; right: 10px; top: 10px; bottom: 10px; aspect-ratio: auto; border-radius: 12px; } 
     .cat-content { max-width: 100%; }
-    .cat-title { font-size: 16px; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
-    .cat-desc { font-size: 11px; line-height: 1.2; margin-bottom: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .cat-link { font-size: 10px; margin-bottom: 0; }
+    
+    .cat-title { font-size: 22px; margin-bottom: 8px; white-space: normal; overflow: visible; width: 100%; }
+    .cat-desc { font-size: 13px; line-height: 1.4; margin-bottom: 15px; display: block; overflow: visible; }
+    .cat-link { font-size: 12px; margin-bottom: 0; }
 
+    /* ПРОДУКТЫ ВНУТРИ (Одинарные, двойные и т.д.) - ОСТАЮТСЯ КОМПАКТНЫМИ */
     .products-section { padding: 20px 15px 50px; } 
     .products-grid { grid-template-columns: 1fr; gap: 15px; } 
     .product-img-wrapper { aspect-ratio: 4 / 3; }
