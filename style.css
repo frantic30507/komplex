@@ -320,12 +320,7 @@ body.inner-page .header { background: #121212; }
 }
 .product-details span { color: var(--text-main); margin-left: 10px; font-weight: 500; white-space: nowrap; }
 
-.product-card .btn { 
-    padding: 10px 0; 
-    font-size: 11px; 
-    width: 100%; 
-    letter-spacing: 1px; 
-}
+.product-card .btn { padding: 10px 0; font-size: 11px; width: 100%; letter-spacing: 1px; }
 
 /* ==========================================================================
    МОДАЛЬНЫЕ ОКНА И ЛАЙТБОКС
@@ -417,7 +412,7 @@ body.inner-page .header { background: #121212; }
 }
 
 /* ==========================================================================
-   МОБИЛЬНАЯ ВЕРСИЯ (ДО 768px)
+   МОБИЛЬНАЯ ВЕРСИЯ (ДО 768px) - СУПЕР ПЛАВНЫЙ КОЛЛАПС
    ========================================================================== */
 @media (max-width: 768px) {
     .header { height: 70px; padding: 0 20px; }
@@ -426,42 +421,45 @@ body.inner-page .header { background: #121212; }
     .logo-mark { width: 32px; height: 32px; font-size: 18px; }
     .logo-text { font-size: 14px; }
     
-    /* СУПЕР-ФИШКА: ПРИЛИПАЮЩИЕ ХЛЕБНЫЕ КРОШКИ С КОЛЛАПСОМ ТЕКСТА */
+    /* ФИШКА: ПРИЛИПАЮЩИЕ ХЛЕБНЫЕ КРОШКИ (АНИМАЦИЯ iOS) */
     .inner-hero { 
         position: sticky; 
-        top: 70px; /* Прилипает сразу под шапкой */
+        top: 70px; 
         z-index: 90; 
         padding: 20px 15px; 
-        border-bottom: none;
-        transition: padding 0.3s ease, box-shadow 0.3s ease;
+        border-bottom: 1px solid transparent;
+        transition: padding 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                    box-shadow 0.5s ease,
+                    border-color 0.5s ease;
     }
     
-    /* Изначально текст есть и он плавно исчезает */
     .inner-hero .page-title,
     .inner-hero .page-desc {
-        max-height: 200px;
+        max-height: 80px; /* Подогнано под реальную высоту для плавности */
         opacity: 1;
         overflow: hidden;
-        transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.4s ease;
+        transform: translateY(0);
+        transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                    opacity 0.3s ease, 
+                    margin-bottom 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                    transform 0.4s ease;
     }
 
     .page-title { font-size: 22px; margin-bottom: 8px; }
     .page-desc { font-size: 12px; line-height: 1.4; }
 
-    /* КЛАСС COMPACT ДОБАВЛЯЕТСЯ ЧЕРЕЗ JS ПРИ СКРОЛЛЕ */
     .inner-hero.compact {
         padding: 12px 15px;
         box-shadow: 0 10px 20px rgba(0,0,0,0.6);
-        border-bottom: 1px solid rgba(197, 160, 89, 0.3); /* Тонкая золотая линия */
+        border-bottom: 1px solid rgba(197, 160, 89, 0.3);
     }
+    
     .inner-hero.compact .page-title,
     .inner-hero.compact .page-desc {
         max-height: 0;
         opacity: 0;
         margin-bottom: 0;
-    }
-    .inner-hero.compact .breadcrumbs {
-        margin-bottom: 0;
+        transform: translateY(-10px); /* Мягкое скольжение вверх при скрытии */
     }
 
     .hero { padding: 100px 20px 20px; } 
