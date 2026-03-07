@@ -421,35 +421,50 @@ body.inner-page .header { background: #121212; }
     .logo-mark { width: 32px; height: 32px; font-size: 18px; }
     .logo-text { font-size: 14px; }
     
-    /* ФИШКА: ПРИЛИПАЮЩИЕ ХЛЕБНЫЕ КРОШКИ (АНИМАЦИЯ iOS) */
+    /* ФИШКА: ПРИЛИПАЮЩИЕ ХЛЕБНЫЕ КРОШКИ (МЯГКАЯ АНИМАЦИЯ iOS) */
     .inner-hero { 
         position: sticky; 
         top: 70px; 
         z-index: 90; 
+        /* Изначальные отступы для заголовка */
         padding: 20px 15px; 
         border-bottom: 1px solid transparent;
-        transition: padding 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
-                    box-shadow 0.5s ease,
-                    border-color 0.5s ease;
+        /* Ультра-плавная физика сcubic-bezier */
+        transition: padding 0.7s cubic-bezier(0.23, 1, 0.32, 1), 
+                    box-shadow 0.6s ease,
+                    border-color 0.6s ease;
     }
     
     .inner-hero .page-title,
     .inner-hero .page-desc {
-        max-height: 80px; /* Подогнано под реальную высоту для плавности */
+        max-height: 100px;
         opacity: 1;
         overflow: hidden;
         transform: translateY(0);
-        transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
-                    opacity 0.3s ease, 
-                    margin-bottom 0.5s cubic-bezier(0.25, 1, 0.5, 1),
-                    transform 0.4s ease;
+        margin-bottom: 8px;
+        /* Текст исчезает чуть быстрее, чтобы не мешать */
+        transition: max-height 0.6s cubic-bezier(0.23, 1, 0.32, 1), 
+                    opacity 0.4s ease, 
+                    margin-bottom 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                    transform 0.5s ease;
     }
 
     .page-title { font-size: 22px; margin-bottom: 8px; }
     .page-desc { font-size: 12px; line-height: 1.4; }
+    
+    /* Базовый стиль крошек вверху блока */
+    .inner-hero .breadcrumbs {
+        transition: margin-bottom 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        margin-bottom: 10px;
+    }
 
+    /* ======================================================================
+       ЗГОЛОУНТЫЙ СОСТОЯНИЕ (.compact)
+       ====================================================================== */
     .inner-hero.compact {
-        padding: 12px 15px;
+        /* 1. ПОДНЯЛИ ЛИНИЮ ВЫШЕ: Прибрали вертикальные отступы блока */
+        padding-top: 0;
+        padding-bottom: 0;
         box-shadow: 0 10px 20px rgba(0,0,0,0.6);
         border-bottom: 1px solid rgba(197, 160, 89, 0.3);
     }
@@ -458,8 +473,14 @@ body.inner-page .header { background: #121212; }
     .inner-hero.compact .page-desc {
         max-height: 0;
         opacity: 0;
-        margin-bottom: 0;
-        transform: translateY(-10px); /* Мягкое скольжение вверх при скрытии */
+        margin-bottom: 0 !important;
+        transform: translateY(-10px); /* Текст мягко уезжает вверх */
+    }
+    
+    /* 2. Даем минимальный отступ самим крошкам, чтобы линия была близко к тексту */
+    .inner-hero.compact .breadcrumbs {
+        margin-top: 10px;
+        margin-bottom: 8px;
     }
 
     .hero { padding: 100px 20px 20px; } 
